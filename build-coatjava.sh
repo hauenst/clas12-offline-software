@@ -5,7 +5,7 @@ usage='build-coatjava.sh [--quiet] [--nospotbugs] [--nomaps] [--nounittests]'
 quiet="no"
 runSpotBugs="yes"
 downloadMaps="yes"
-runUnitTests="yes"
+runUnitTests="no"
 for xx in $@
 do
     if [ "$xx" == "--nospotbugs" ]
