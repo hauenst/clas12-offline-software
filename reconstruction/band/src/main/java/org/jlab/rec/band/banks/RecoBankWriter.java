@@ -2,6 +2,8 @@ package org.jlab.rec.band.banks;
 
 import java.util.ArrayList;
 
+import org.jlab.geom.base.Layer;
+import org.jlab.geom.base.Sector;
 import org.jlab.io.base.DataBank;
 import org.jlab.io.base.DataEvent;
 import org.jlab.rec.band.hit.BandHit;
@@ -45,6 +47,11 @@ public class RecoBankWriter {
 
 			int barKey = hitlist.get(i).GetSector()*100+hitlist.get(i).GetLayer()*10+hitlist.get(i).GetComponent();
 			double energyconvert_params[] = CalibrationConstantsLoader.ENERGY_CONVERT.get( Integer.valueOf(barKey) );
+			if (energyconvert_params.length < 3   ) {
+				System.err.println("BAND RecoBANKWriter energy conversion array is below 3");
+				System.err.println("Sector " + hitlist.get(i).GetSector() + " , Layer " + hitlist.get(i).GetLayer() + " , component " + hitlist.get(i).GetComponent());
+			}
+			
 			double parA = energyconvert_params[0];
 			double parB = energyconvert_params[1];
 			double parC = energyconvert_params[2];
